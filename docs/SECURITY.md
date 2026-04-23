@@ -8,13 +8,12 @@ and test databases shipped in this repository exist purely for format
 verification.
 
 A scoped third-party audit of the crypto and key-handling layers
-is planned for the v2.0 cycle, not v1.0. v1.0 leans on the
-inspectable trust surface itself: open source under MIT, no
-external Swift package dependencies in the cryptographic path,
-vendored Argon2 at a fixed commit, and zero network calls from
-the cryptographic or database-handling code. The v2.0 audit
-report and all findings (fixed or accepted) will be published
-alongside the v2.0 release.
+is planned for the v2.0 cycle, not v1.0. v1.0 leans on a small
+trust surface: no external Swift package dependencies in the
+cryptographic path, vendored Argon2 at a fixed commit, and zero
+network calls from the cryptographic or database-handling code.
+The v2.0 audit report and all findings (fixed or accepted) will
+be published alongside the v2.0 release.
 
 ## Reporting a vulnerability
 
