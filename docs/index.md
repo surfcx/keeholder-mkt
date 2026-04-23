@@ -6,7 +6,7 @@ A KeePass (.kdbx) client for iPhone and iPad that holds nothing it
 doesn't need to. Your file lives in your Files provider. Your master
 password lives in your head. The app is the lens.
 
-[App Store — TBD]
+_Coming soon to the App Store._
 
 ---
 
@@ -86,15 +86,47 @@ subscriptions, no ads, no upsells inside your vault.
 
 ### Why another KeePass client?
 
-[TBD: differentiation wedge — `docs/keepass-ios-plan.md` §8 Q1.
-Placeholder until that decision lands.]
+Most people don't need one — KeePassium and Strongbox are mature,
+capable, and fully open source. KeeHolder is built for a narrower
+audience: people moving off a hosted password manager (1Password,
+Bitwarden, LastPass) who want an iOS reader that doesn't introduce a
+new server, doesn't copy their KDBX into a private sandbox, and keeps
+the trust surface small enough to reason about.
+
+The wedge is the migration path. The step-by-step guides under
+[`docs/migration/`](../migration/) route a 1Password / Bitwarden /
+LastPass export through KeePassXC's audited desktop importers into a
+KDBX file that KeeHolder reads natively. KeePassXC handles the long
+tail of edge cases (custom fields, attachments, TOTP) on the desktop,
+where that work is best done; KeeHolder reads the resulting file on
+iOS without re-implementing those importers.
+
+If migration isn't relevant to you and you already have a KDBX you're
+happy with, the established apps will probably serve you better today.
 
 ### How is this different from Strongbox / KeePassium?
 
-[TBD: positioning answer required. Honest framing: those are mature,
-established apps; this one's hook is the trust story (no external
-crypto deps, hand-auditable). Until that's the explicit positioning,
-the answer should be "they're great; this one's narrower on purpose."]
+They are more mature, more feature-complete, and fully open source.
+If any of those matter to you, pick one of them — they're good
+software and have been around longer.
+
+KeeHolder makes three deliberately narrower choices for v1.0:
+
+- **Read-only.** Entry editing and database write-back are on the
+  v1.x roadmap. v1.0 ships only the read path so the v1.0 attack
+  surface stays minimal.
+- **Smaller trust surface.** No external Swift package dependencies
+  in the cryptographic path; Argon2 is vendored at a fixed commit;
+  Salsa20 and ChaCha20 are hand-rolled in-tree against published
+  test vectors. Less code, no transitive dependency graph to audit.
+- **Migration-first.** The shipping focus for v1.0 is getting people
+  off hosted password managers, not feature parity with desktop
+  KeePass. The migration guides are the product as much as the
+  reader is.
+
+If you already live in KeePass on desktop and want feature parity on
+iOS today, the established apps are the better fit. KeeHolder is for
+people whose journey starts with "I want to leave 1Password."
 
 ### What's in v1.0 and what isn't?
 
@@ -157,6 +189,6 @@ This is the honest version of the answer for v1.0:
 
 ## Get it
 
-- **App Store**: [TBD: badge link]
+- **App Store**: coming soon.
 - **Privacy policy**: [`privacy.md`](privacy.md)
 - **Security policy**: [`SECURITY.md`](SECURITY.md)
