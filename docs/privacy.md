@@ -74,5 +74,5 @@ The current canonical version of this policy lives at
 
 ## Contact
 
-Security issues: see [`SECURITY.md`](TBD: repo SECURITY.md URL).
-General questions: [TBD: support email or repo issues URL].
+Security issues: see [`SECURITY.md`](SECURITY.md).
+General questions: [Contact](https://github.com/surfcx/keeholder-mkt/issues).

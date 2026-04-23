@@ -6,7 +6,7 @@ A KeePass (.kdbx) client for iPhone and iPad that holds nothing it
 doesn't need to. Your file lives in your Files provider. Your master
 password lives in your head. The app is the lens.
 
-[App Store — TBD] · [GitHub — TBD: repo URL]
+[App Store — TBD]
 
 ---
 
@@ -24,8 +24,6 @@ KeeHolder is built so the answer is short:
   key, and decrypted entry contents never leave the device. They are
   never logged, serialized, or sent anywhere. The app and its
   cryptographic core make zero network calls.
-- **Open source under MIT.** Every line — the KDBX parser, the
-  Argon2 wrapper, the iOS shell — is on GitHub.
 - **Inspectable trust surface.** No external Swift package
   dependencies in the cryptographic path. Argon2 is vendored at a
   fixed commit. Salsa20 and ChaCha20 are hand-rolled in-tree against
@@ -70,7 +68,7 @@ third-party audit is planned for v2.0; the report will publish
 alongside that release.
 
 The threat model, key handling, and known limitations live in
-[`SECURITY.md`](TBD: repo SECURITY.md URL). Until the v2.0 audit
+[`SECURITY.md`](SECURITY.md). Until the v2.0 audit
 publishes, **do not store irreplaceable secrets** in databases you
 only open with this app.
 
@@ -126,22 +124,15 @@ safely — live under [`docs/migration/`](../migration/):
 Yes, with one database. KeeHolder is freemium: a one-time purchase
 removes the single-database limit and unlocks additional paid
 features as they ship. There are no subscriptions, no ads, and no
-upsells inside your vault. [TBD: exact price] — set when the App
-Store listing goes live.
+upsells inside your vault.
 
 ### How do I report a security issue?
 
 Privately, via the channels documented in
-[`SECURITY.md`](TBD: repo SECURITY.md URL). GitHub Security Advisories
+[`SECURITY.md`](SECURITY.md). GitHub Security Advisories
 are the preferred channel. **Please do not file a public issue.**
 
 ### How do I trust a binary I didn't compile?
-
-Honestly: open source helps but doesn't fully solve this. You can
-read every line of source, but the App Store binary is built and
-signed by Apple's infrastructure from a build I submit. Reproducible
-builds are an unsolved problem in this codebase
-([`docs/keepass-ios-plan.md`](TBD: plan URL) §8). The mitigations:
 
 - The cryptographic surface is small and inspectable. There are no
   external Swift package dependencies in the crypto path; only
@@ -162,6 +153,5 @@ right move is to build from source yourself and sideload via Xcode.
 ## Get it
 
 - **App Store**: [TBD: badge link]
-- **GitHub**: [TBD: repo URL]
 - **Privacy policy**: [`privacy.md`](privacy.md)
-- **Security policy**: [`SECURITY.md`](TBD: repo SECURITY.md URL)
+- **Security policy**: [`SECURITY.md`](SECURITY.md)
