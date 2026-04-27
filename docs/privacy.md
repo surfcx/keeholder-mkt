@@ -1,6 +1,6 @@
 # Privacy Policy — KeeHolder
 
-Last updated: 2026-04-22.
+Last updated: 2026-04-26.
 
 **KeeHolder does not collect personal data. There is no analytics
 SDK, no telemetry on database contents, and no network call from the
@@ -21,11 +21,21 @@ what little data the app does touch, and where it lives.
   password again.
 - App settings — clipboard timeout, idle-lock interval, launch
   biometric gate. Stored in standard `UserDefaults`.
+- For cloud-backed databases (OneDrive, Google Drive, Dropbox): a
+  cached copy of the encrypted .kdbx file and its metadata (ETag,
+  modification date) in the App Group container, plus an OAuth refresh
+  token in the shared iOS Keychain.
 
-The KDBX file you opened is **not** copied or stored by the app.
-The file lives where you put it (iCloud Drive, Dropbox, on-device,
-etc.); the app holds a security-scoped bookmark, which is a
-filesystem handle — not a copy of the file or its contents.
+For databases opened via the iOS Files app, the KDBX file is **not**
+copied or stored by the app — it stays where you put it, and the app
+holds a security-scoped bookmark (a filesystem handle, not a copy).
+
+For databases opened via the built-in OneDrive, Google Drive, or
+Dropbox integration, the app caches the encrypted .kdbx file locally
+(in the App Group container) for offline access. The cached file is
+the same encrypted blob your cloud provider stores — it is never
+decrypted on disk. OAuth refresh tokens for cloud providers are stored
+in the shared iOS Keychain.
 
 ## What the app does not store
 
@@ -39,10 +49,18 @@ filesystem handle — not a copy of the file or its contents.
 
 ## Network access
 
-- The app and its cryptographic / database-handling code make **no
-  network calls.** This is verifiable in the source.
-- The app does not contact any backend, telemetry endpoint, or
-  third-party service.
+- The **cryptographic and database-handling code** makes **no network
+  calls.** Key derivation, decryption, and XML parsing are fully
+  offline.
+- When you use the built-in OneDrive, Google Drive, or Dropbox
+  integration, the app communicates with that provider's REST API to
+  download, upload, and check metadata for your .kdbx file. It also
+  exchanges OAuth tokens with the provider's authorization server.
+  These are the **only** network calls the app makes, and they occur
+  only for cloud-backed databases — never for Files-app-backed
+  databases.
+- The app does not contact any proprietary backend, telemetry
+  endpoint, or analytics service.
 - iOS may make incidental network requests outside the app's
   control — for example, when iCloud Drive syncs the underlying
   KDBX file, or when MetricKit submits aggregate system metrics

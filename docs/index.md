@@ -35,8 +35,9 @@ KeeHolder is built so the answer is short:
 ## What it does
 
 - Opens KDBX3 and KDBX4 databases from any iOS Files provider —
-  iCloud Drive, Dropbox, Google Drive, on-device, anywhere the
-  document picker reaches.
+  iCloud Drive, on-device, anywhere the document picker reaches.
+  Built-in OneDrive, Google Drive, and Dropbox integration with
+  in-app file browsing, offline cache, and conflict detection.
 - Unlocks with a master password, an optional keyfile, and (per
   database, opt-in) Face ID or Touch ID.
 - Browses the group tree, searches across titles, usernames, URLs,
@@ -111,6 +112,8 @@ KeeHolder makes two deliberately narrower choices:
   in the cryptographic path; Argon2 is vendored at a fixed commit;
   Salsa20 and ChaCha20 are hand-rolled in-tree against published
   test vectors. Less code, no transitive dependency graph to audit.
+  Cloud providers (OneDrive, Google Drive, Dropbox) use standard
+  OAuth2 PKCE with zero external SDKs.
 - **Migration-first.** The shipping focus is getting people off hosted
   password managers, not feature parity with desktop KeePass. The
   migration guides are the product as much as the app is.
@@ -124,8 +127,9 @@ people whose journey starts with "I want to leave 1Password."
 In: full read/write KDBX3 and KDBX4, entry and group editing, database
 creation, master-password change, save-conflict detection, Face ID /
 Touch ID unlock, keyfile support, AutoFill for passwords, live TOTP
-codes (with AutoFill on iOS 18+), iPad split view, configurable
-clipboard and idle-lock timeouts.
+codes (with AutoFill on iOS 18+), direct OneDrive / Google Drive /
+Dropbox integration, iPad split view, configurable clipboard and
+idle-lock timeouts.
 
 Not yet: password health checks, hardware key (YubiKey) support,
 AutoFill for passkeys.
